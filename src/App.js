@@ -13,18 +13,21 @@ class App extends Component {
       worldWidth: 2400,
       worldHeight: 800,
       grid: [],
+      gridItems: [],
       currentTile: -1,
-      levelName: '',
+      levelIndex: '',
     };
 
     this.saveLayout = this.saveLayout.bind(this);
     this.changeCurrentTile = this.changeCurrentTile.bind(this);
-    this.changeLevelName = this.changeLevelName.bind(this);
+    this.changeLevelIndex = this.changeLevelIndex.bind(this);
+    this.tileChanged = this.tileChanged.bind(this);
+    this.fileUpload = this.fileUpload.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.currentTile !== this.state.currentTile) {
-      this.createGrid();
+    if (prevState.grid !== this.state.grid) {
+      this.createGridItems();
     }
   }
 
@@ -39,11 +42,11 @@ class App extends Component {
   }
 
   saveLayout() {
-    const { grid, levelName } = this.state;
+    const { grid, levelIndex } = this.state;
     const layout = [];
     let counter = 0;
 
-    if (levelName === '') {
+    if (levelIndex === '') {
       return;
     }
 
@@ -56,15 +59,52 @@ class App extends Component {
         counter++;
       }
     }
-    const json = JSON.stringify(layout);
-    console.log(json);
 
     const jsonWithKey = JSON.stringify({
       level: layout,
     });
 
     const blob = new Blob([jsonWithKey], { type: 'application/json' });
-    FileSaver.saveAs(blob, `${levelName}.json`);
+    FileSaver.saveAs(blob, `level${levelIndex}.json`);
+  }
+
+  createGridItems() {
+    const { grid } = this.state;
+    const gridItems = [];
+    console.log(grid.length);
+    for (let i = 0; i < grid.length; i++) {
+      gridItems[i] = [];
+      for (let j = 0; j < grid[i].length; j++) {
+        const element = grid[i][j];
+        gridItems[i].push(
+          <GridTile
+            key={`${element.position.x}${element.position.y}`}
+            currentTile={this.state.currentTile}
+            tileData={element.tileData}
+            onChange={this.tileChanged}
+            x={element.position.x}
+            y={element.position.y}
+          />
+        );
+      }
+    }
+
+    this.setState({
+      gridItems,
+    });
+  }
+
+  tileChanged(x, y, tileData) {
+    console.log(x, y, tileData);
+    const { grid } = this.state;
+
+    grid[y][x].tileData = tileData;
+
+    console.log(grid[y][x]);
+
+    this.setState({
+      grid,
+    });
   }
 
   createGrid() {
@@ -77,14 +117,10 @@ class App extends Component {
     for (let i = 0; i < tileCountY; i++) {
       grid[i] = [];
       for (let j = 0; j < tileCountX; j++) {
-        grid[i].push(
-          <GridTile
-            key={`${i}${j}`}
-            currentTile={this.state.currentTile}
-            x={j}
-            y={i}
-          />
-        );
+        grid[i].push({
+          position: { x: j, y: i },
+          tileData: -1,
+        });
       }
     }
 
@@ -93,24 +129,54 @@ class App extends Component {
     });
   }
 
-  changeLevelName(event) {
+  changeLevelIndex(event) {
     const { value } = event.target;
 
     this.setState({
-      levelName: value,
+      levelIndex: value,
+    });
+  }
+
+  fileUpload(event) {
+    const fileEl = document.getElementById('file');
+    const file = fileEl.files[0];
+    const fr = new FileReader();
+    fr.readAsText(file);
+
+    fr.addEventListener('load', () => {
+      const json = JSON.parse(fr.result);
+      this.fileUploadProcess(json.level);
+    });
+  }
+
+  fileUploadProcess(json) {
+    const grid = [];
+    for (let i = 0; i < json.length; i++) {
+      grid[i] = [];
+      for (let j = 0; j < json[i].length; j++) {
+        grid[i].push({
+          position: { x: j, y: i },
+          tileData: json[i][j],
+        });
+      }
+    }
+
+    this.setState({
+      grid,
     });
   }
 
   render() {
-    const { worldWidth, grid, levelName } = this.state;
+    const { worldWidth, gridItems, levelIndex } = this.state;
     return (
       <div className="App">
         <Header
-          levelName={levelName}
-          onChange={this.changeLevelName}
+          levelIndex={levelIndex}
+          onChange={this.changeLevelIndex}
           save={this.saveLayout}
+          fileUpload={this.fileUpload}
         />
-        <Grid grid={grid} width={worldWidth} />
+        <Grid grid={gridItems} width={worldWidth} />
         <TileSelector selectTile={this.changeCurrentTile} />
       </div>
     );

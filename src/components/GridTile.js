@@ -7,16 +7,28 @@ class GridTile extends Component {
     this.state = {
       x: props.x,
       y: props.y,
-      tileData: -1,
+      tileData: props.tileData,
     };
 
     this.tileClick = this.tileClick.bind(this);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.tileData !== this.props.tileData) {
+      this.setState({
+        tileData: this.props.tileData,
+      });
+    }
+  }
+
   tileClick() {
+    const { x, y, tileData } = this.state;
+
     this.setState({
       tileData: this.props.currentTile,
     });
+
+    this.props.onChange(x, y, this.props.currentTile);
   }
 
   changeColor() {

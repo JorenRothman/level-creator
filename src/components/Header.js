@@ -5,8 +5,17 @@ const header = props => {
     <header>
       <button onClick={props.save}>Save</button>
       <label>
-        Level name:
-        <input type="text" value={props.fileName} onChange={props.onChange} />
+        Level index:
+        <input
+          type="text"
+          placeholder="1"
+          value={props.levelIndex}
+          onChange={props.onChange}
+        />
+      </label>
+      <label>
+        Load level:
+        <input id="file" type="file" onChange={props.fileUpload} />
       </label>
     </header>
   );
