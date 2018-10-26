@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/level-creator/static/js/runtime~main.a28c7ba6.js"
   },
   {
-    "revision": "8af0ab1e7e8e8c36d785",
-    "url": "/level-creator/static/js/main.8af0ab1e.chunk.js"
+    "revision": "6a79ffd08c87d5b64725",
+    "url": "/level-creator/static/js/main.6a79ffd0.chunk.js"
   },
   {
     "revision": "c1ff31f492a208f506d3",
     "url": "/level-creator/static/js/1.c1ff31f4.chunk.js"
   },
   {
-    "revision": "8af0ab1e7e8e8c36d785",
+    "revision": "6a79ffd08c87d5b64725",
     "url": "/level-creator/static/css/main.3c75e14c.chunk.css"
   },
   {
-    "revision": "2311ce4e2b42daa30e7ddefb4885eff1",
+    "revision": "db556b321b88d6cf18c74582c825533e",
     "url": "/level-creator/index.html"
   }
 ];
