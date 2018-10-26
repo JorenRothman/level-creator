@@ -1,13 +1,13 @@
 {
   "main.css": "/level-creator/static/css/main.3c75e14c.chunk.css",
-  "main.js": "/level-creator/static/js/main.f3699260.chunk.js",
-  "main.js.map": "/level-creator/static/js/main.f3699260.chunk.js.map",
+  "main.js": "/level-creator/static/js/main.8af0ab1e.chunk.js",
+  "main.js.map": "/level-creator/static/js/main.8af0ab1e.chunk.js.map",
   "static/js/1.c1ff31f4.chunk.js": "/level-creator/static/js/1.c1ff31f4.chunk.js",
   "static/js/1.c1ff31f4.chunk.js.map": "/level-creator/static/js/1.c1ff31f4.chunk.js.map",
   "runtime~main.js": "/level-creator/static/js/runtime~main.a28c7ba6.js",
   "runtime~main.js.map": "/level-creator/static/js/runtime~main.a28c7ba6.js.map",
   "static/css/main.3c75e14c.chunk.css.map": "/level-creator/static/css/main.3c75e14c.chunk.css.map",
   "index.html": "/level-creator/index.html",
-  "precache-manifest.a8fda631a76c0e19bb60a3a0d0c54dfd.js": "/level-creator/precache-manifest.a8fda631a76c0e19bb60a3a0d0c54dfd.js",
+  "precache-manifest.1af6fe22590b3f4edb305e0afba76ab3.js": "/level-creator/precache-manifest.1af6fe22590b3f4edb305e0afba76ab3.js",
   "service-worker.js": "/level-creator/service-worker.js"
 }
