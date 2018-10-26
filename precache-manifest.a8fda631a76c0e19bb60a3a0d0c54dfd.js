@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/level-creator/static/css/main.3c75e14c.chunk.css"
   },
   {
-    "revision": "3030d353b094beda190f8e4918f142c0",
+    "revision": "3de99461762ffd6d1ec59f5b78e151ff",
     "url": "/level-creator/index.html"
   }
 ];

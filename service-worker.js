@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/level-creator/precache-manifest.bd0bb2ab0908da0e6e1456f2048565aa.js"
+  "/level-creator/precache-manifest.a8fda631a76c0e19bb60a3a0d0c54dfd.js"
 );
 
 workbox.clientsClaim();
