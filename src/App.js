@@ -36,9 +36,14 @@ class App extends Component {
   }
 
   changeCurrentTile(tileNumber) {
-    this.setState({
-      currentTile: tileNumber,
-    });
+    this.setState(
+      {
+        currentTile: tileNumber,
+      },
+      () => {
+        this.createGridItems();
+      }
+    );
   }
 
   saveLayout() {
@@ -84,12 +89,9 @@ class App extends Component {
   }
 
   tileChanged(x, y, tileData) {
-    console.log(x, y, tileData);
     const { grid } = this.state;
 
     grid[y][x].tileData = tileData;
-
-    console.log(grid[y][x]);
 
     this.setState({
       grid,

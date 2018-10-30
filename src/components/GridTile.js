@@ -24,6 +24,8 @@ class GridTile extends Component {
   tileClick() {
     const { x, y, tileData } = this.state;
 
+    console.log(this.props.currentTile);
+
     this.setState({
       tileData: this.props.currentTile,
     });
