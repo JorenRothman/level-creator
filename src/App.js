@@ -43,22 +43,12 @@ class App extends Component {
 
   saveLayout() {
     const { grid, levelIndex } = this.state;
-    const layout = [];
-    let counter = 0;
 
     if (levelIndex === '') {
       return;
     }
 
-    const tiles = document.querySelectorAll('.tile');
-
-    for (let i = 0; i < grid.length; i++) {
-      layout[i] = [];
-      for (let j = 0; j < grid[i].length; j++) {
-        layout[i].push(parseInt(tiles[counter].getAttribute('data-id')));
-        counter++;
-      }
-    }
+    const layout = grid.map(gridRow => gridRow.map(item => item.tileData));
 
     const jsonWithKey = JSON.stringify({
       level: layout,
@@ -71,7 +61,6 @@ class App extends Component {
   createGridItems() {
     const { grid } = this.state;
     const gridItems = [];
-    console.log(grid.length);
     for (let i = 0; i < grid.length; i++) {
       gridItems[i] = [];
       for (let j = 0; j < grid[i].length; j++) {
