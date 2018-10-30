@@ -10,8 +10,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      worldWidth: 2400,
-      worldHeight: 800,
+      worldWidth: 10000,
+      worldHeight: 1500,
       grid: [],
       gridItems: [],
       currentTile: -1,
